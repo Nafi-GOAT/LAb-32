@@ -28,11 +28,41 @@ int main () {
     }
     cout << endl;
 
-    int time = 0;
+    int timeStep = 0;
 
      
     while (!lane.empty()) {
-    +++ timeStep = 1;
+        +++timeStep;
+        int roll = rand() % 100;
 
-    int roll = rand() % 100;
+                if (roll < PAY_PROBABILITY) {
+            cout << "Time: " << timeStep << " Operation: Car paid: ";
+            lane.front().print();
+            cout << endl;
+
+            lane.pop_front();
+        } else {
+            Car newCar;
+            cout << "Time: " << timeStep << " Operation: Joined lane: ";
+            newCar.print();
+            cout << endl;
+
+            lane.push_back(newCar);
+        }
+
+     // Print queue
+        cout << "Queue:\n";
+        if (lane.empty()) {
+            cout << "Empty\n";
+        } else {
+            for (Car &c : lane) {
+                cout << "    ";
+                c.print();
+                cout << endl;
+            }
+        }
+
+        cout << endl;
+}
+return 0;
 }
