@@ -32,7 +32,7 @@ int main () {
 
      
     while (!lane.empty()) {
-        +++timeStep;
+        ++timeStep;
         int roll = rand() % 100;
 
                 if (roll < PAY_PROBABILITY) {
