@@ -53,7 +53,44 @@ int main() {
                 }
             }
 
-        cout << endl;
+                        else if (roll < PROB_PAY + PROB_JOIN) {
+                Car newcomer;
+                lanes[lane].push_back(newcomer);
+
+                operations.push_back(
+                    "Lane " + to_string(lane + 1) + " Joined: " +
+                    "[" + to_string(newcomer.year) + " " + newcomer.manufacturer +
+                    " (" + to_string(newcomer.id) + ")]"
+                );
+            }
+else {
+                if (lane < NUM_LANES - 1 && !lanes[lane].empty()) {
+                    Car switchingCar = lanes[lane].back();
+                    lanes[lane].pop_back();
+                    lanes[lane + 1].push_back(switchingCar);
+
+                    operations.push_back(
+                        "Lane " + to_string(lane + 1) + " to Lane " +
+                        to_string(lane + 2) + " Switched: " +
+                        "[" + to_string(switchingCar.year) + " " +
+                        switchingCar.manufacturer + " (" +
+                        to_string(switchingCar.id) + ")]"
+                    );
+                }
+            }
+        }
+
+                for (const string &op : operations) {
+            cout << op << endl;
+        }
+
+        cout << "\nQueues after time " << timeStep << ":\n";
+        for (int i = 0; i < NUM_LANES; i++) {
+            cout << "Lane " << i + 1 << ":\n";
+            for (Car &c : lanes[i]) c.print();
+            cout << endl;
+        }
+
 }
 return 0;
 }
