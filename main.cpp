@@ -40,39 +40,18 @@ int main() {
         for (int lane = 0; lane < NUM_LANES; lane++) {
 
             int roll = rand() % 100;
+            if (roll < PROB_PAY) {
+                if (!lanes[lane].empty()) {
+                    Car leaving = lanes[lane].front();
+                    lanes[lane].push_front();
 
-
-     
-    while (!lane.empty()) {
-        ++timeStep;
-        int roll = rand() % 100;
-
-                if (roll < PAY_PROBABILITY) {
-            cout << "Time: " << timeStep << " Operation: Car paid: ";
-            lane.front().print();
-            cout << endl;
-
-            lane.pop_front();
-        } else {
-            Car newCar;
-            cout << "Time: " << timeStep << " Operation: Joined lane: ";
-            newCar.print();
-            cout << endl;
-
-            lane.push_back(newCar);
-        }
-
-     // Print queue
-        cout << "Queue:\n";
-        if (lane.empty()) {
-            cout << "Empty\n";
-        } else {
-            for (Car &c : lane) {
-                cout << "    ";
-                c.print();
-                cout << endl;
+                    operations.push_back(
+                        "Lane " + to_string(lane + 1) + " Paid: " +
+                        "[" + to_string(leaving.year) + " " + leaving.manufacturer +
+                        " (" + to_string(leaving.id) + ")]"
+                    );
+                }
             }
-        }
 
         cout << endl;
 }
