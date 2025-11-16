@@ -41,7 +41,8 @@ int main() {
         for (int lane = 0; lane < NUM_LANES; lane++) {
 
             int roll = rand() % 100;
-                 if (roll < PROB_PAY) {
+
+          if (roll < PROB_PAY) {
                 if (!lanes[lane].empty()) {
                     Car leaving = lanes[lane].front();
                     lanes[lane].pop_front();
@@ -50,18 +51,13 @@ int main() {
                                          leaving.toString());
                 }
             }
-                }
-            }
 
-                 else if (roll < PROB_PAY + PROB_JOIN) {
+            else if (roll < PROB_PAY + PROB_JOIN) {
                 Car newcomer;
                 lanes[lane].push_back(newcomer);
 
-                operations.push_back(
-                    "Lane " + to_string(lane + 1) + " Joined: " +
-                    "[" + to_string(newcomer.year) + " " + newcomer.manufacturer +
-                    " (" + to_string(newcomer.id) + ")]"
-                );
+                operations.push_back("Lane " + to_string(lane + 1) + " Joined: " +
+                                     newcomer.toString());
             }
 
             else {
