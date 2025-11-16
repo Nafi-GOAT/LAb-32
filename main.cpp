@@ -77,11 +77,13 @@ int main() {
                     lanes[targetLane].push_back(switching);
 
                     operations.push_back(
-                        "Lane " + to_string(lane + 1) + " Switched to Lane " +
-                        to_string(targetLane + 1) + ": [" +
+                        "Lane " + to_string(lane + 1) + " Switched: [" +
                         to_string(switching.getYear()) + " " +
                         switching.getMake() + " (" +
-                        to_string(switching.getTransponder()) + ")]");
+                        to_string(switching.getTransponder()) + 
+                        ")] to Lane " + to_string(targetLane + 1)
+                    );
+                        
                 }
             }
         }
@@ -100,5 +102,6 @@ int main() {
             }
             cout << endl;
         }
+    }
 return 0;
 }
