@@ -69,7 +69,6 @@ int main() {
                         targetLane = rand() % NUM_LANES;
                     }
 
-                    // take REAR car
                     Car switching = lanes[lane].back();
                     lanes[lane].pop_back();
                     lanes[targetLane].push_back(switching);
@@ -78,17 +77,18 @@ int main() {
                         "Lane " + to_string(lane + 1) + " Switched: " +
                         "[" + to_string(switching.year) + " " + switching.manufacturer +
                         " (" + to_string(switching.id) + ")] to Lane " +
-                        to_string(targetLane + 1)
-                    );
+                        to_string(targetLane + 1));
                 }
             }
         }
 
-                for (string &o : operations) cout << o << endl;
+                for (string &o : operations) 
+                cout << o << endl;
 
         // Print full plaza state after operations
         for (int lane = 0; lane < NUM_LANES; lane++) {
             cout << "Lane " << lane + 1 << " Queue:\n";
+
             if (lanes[lane].empty()) {
                 cout << "  empty\n";
             } else {
