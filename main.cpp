@@ -5,17 +5,19 @@
 #include <ctime>
 using namespace std;    
 
- const int NUM_LANES = 3;
-deque<Car> lanes[NUM_LANES];
+ const int NUM_LANES = 4;
+ const int INITIAL_CARS = 2;
+ const int PROB_PAY = 46;              
+ const int PROB_JOIN = 39;             
+ const int PROB_SWITCH = 15; 
 
 
-    deque<Car> lane;
 
     int main() {
 
     srand(time(0));
 
-    deque<Car> lane;
+    deque<Car> lanes[NUM_LANES];
 
     for (int i = 0; i < INITIAL_CARS; ++i){
         lane.push_back(Car());
