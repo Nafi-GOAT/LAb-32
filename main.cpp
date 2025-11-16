@@ -1,12 +1,17 @@
 #include <iostream>
 #include "Car.h"
 #include <cstdlib>
+#include <deque>
 #include <ctime>
 using namespace std;    
 
-int main () {
-    const int INITIAL_CARS = 2;
-    const int PAY_PROBABILITY = 55;
+ const int NUM_LANES = 3;
+deque<Car> lanes[NUM_LANES];
+
+
+    deque<Car> lane;
+
+    int main() {
 
     srand(time(0));
 
