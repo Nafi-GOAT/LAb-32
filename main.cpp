@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <deque>
 #include <ctime>
+#include <vector>
 using namespace std;    
 
  const int NUM_LANES = 4;
@@ -40,20 +41,19 @@ int main() {
         for (int lane = 0; lane < NUM_LANES; lane++) {
 
             int roll = rand() % 100;
-            if (roll < PROB_PAY) {
+                 if (roll < PROB_PAY) {
                 if (!lanes[lane].empty()) {
                     Car leaving = lanes[lane].front();
-                    lanes[lane].push_front();
+                    lanes[lane].pop_front();
 
-                    operations.push_back(
-                        "Lane " + to_string(lane + 1) + " Paid: " +
-                        "[" + to_string(leaving.year) + " " + leaving.manufacturer +
-                        " (" + to_string(leaving.id) + ")]"
-                    );
+                    operations.push_back("Lane " + to_string(lane + 1) + " Paid: " +
+                                         leaving.toString());
+                }
+            }
                 }
             }
 
-                        else if (roll < PROB_PAY + PROB_JOIN) {
+                 else if (roll < PROB_PAY + PROB_JOIN) {
                 Car newcomer;
                 lanes[lane].push_back(newcomer);
 
