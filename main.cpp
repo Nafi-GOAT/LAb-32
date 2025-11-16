@@ -25,16 +25,11 @@ int main() {
     }
 
     cout << "Initial queue:\n";
-    if (lanes.empty()) {
-        cout << "Empty\n";
-    } else {
-        for (Car &c : lane) {
-            cout << "    ";
-            c.print();
-            cout << endl;
-        }
+    for (int i = 0; i < NUM_LANES; i++) {
+        cout << "Lane " << i + 1 << ":\n";
+        for (Car &c : lanes[i]) c.print();
+        cout << endl;
     }
-    cout << endl;
 
     int timeStep = 0;
 
