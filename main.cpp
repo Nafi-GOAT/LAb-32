@@ -63,33 +63,44 @@ int main() {
                     " (" + to_string(newcomer.id) + ")]"
                 );
             }
-else {
-                if (lane < NUM_LANES - 1 && !lanes[lane].empty()) {
-                    Car switchingCar = lanes[lane].back();
+
+            else {
+                if (!lanes[lane].empty()) {
+                    int targetLane = rand() % NUM_LANES;
+
+                    // ensure switch lane is different
+                    while (targetLane == lane) {
+                        targetLane = rand() % NUM_LANES;
+                    }
+
+                    // take REAR car
+                    Car switching = lanes[lane].back();
                     lanes[lane].pop_back();
-                    lanes[lane + 1].push_back(switchingCar);
+                    lanes[targetLane].push_back(switching);
 
                     operations.push_back(
-                        "Lane " + to_string(lane + 1) + " to Lane " +
-                        to_string(lane + 2) + " Switched: " +
-                        "[" + to_string(switchingCar.year) + " " +
-                        switchingCar.manufacturer + " (" +
-                        to_string(switchingCar.id) + ")]"
+                        "Lane " + to_string(lane + 1) + " Switched: " +
+                        "[" + to_string(switching.year) + " " + switching.manufacturer +
+                        " (" + to_string(switching.id) + ")] to Lane " +
+                        to_string(targetLane + 1)
                     );
                 }
             }
         }
 
-                for (const string &op : operations) {
-            cout << op << endl;
-        }
+                for (string &o : operations) cout << o << endl;
 
-        cout << "\nQueues after time " << timeStep << ":\n";
-        for (int i = 0; i < NUM_LANES; i++) {
-            cout << "Lane " << i + 1 << ":\n";
-            for (Car &c : lanes[i]) c.print();
+        // Print full plaza state after operations
+        for (int lane = 0; lane < NUM_LANES; lane++) {
+            cout << "Lane " << lane + 1 << " Queue:\n";
+            if (lanes[lane].empty()) {
+                cout << "  empty\n";
+            } else {
+                for (Car &c : lanes[lane]) c.print();
+            }
             cout << endl;
         }
+    }
 
 }
 return 0;
