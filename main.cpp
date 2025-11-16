@@ -12,19 +12,20 @@ using namespace std;
  const int PROB_SWITCH = 15; 
 
 
-
-    int main() {
+int main() {
 
     srand(time(0));
 
     deque<Car> lanes[NUM_LANES];
 
-    for (int i = 0; i < INITIAL_CARS; ++i){
-        lane.push_back(Car());
+        for (int i = 0; i < NUM_LANES; i++) {
+        for (int j = 0; j < INITIAL_CARS; j++) {
+            lanes[i].push_back(Car());
+        }
     }
 
     cout << "Initial queue:\n";
-    if (lane.empty()) {
+    if (lanes.empty()) {
         cout << "Empty\n";
     } else {
         for (Car &c : lane) {
