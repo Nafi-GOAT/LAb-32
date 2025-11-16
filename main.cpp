@@ -31,7 +31,16 @@ int main() {
         cout << endl;
     }
 
-    int timeStep = 0;
+        for (int timeStep = 1; timeStep <= 20; timeStep++) {
+
+        cout << "Time: " << timeStep << ":\n";
+
+        vector<string> operations;
+
+        for (int lane = 0; lane < NUM_LANES; lane++) {
+
+            int roll = rand() % 100;
+
 
      
     while (!lane.empty()) {
