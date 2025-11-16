@@ -48,16 +48,19 @@ int main() {
                     lanes[lane].pop_front();
 
                     operations.push_back("Lane " + to_string(lane + 1) + " Paid: " +
-                                         leaving.toString());
+                                         "[" + to_string(leaving.getYear()) + " " +
+                                         leaving.getMake() + " (" +
+                                         to_string(leaving.getTransponder()) + ")]");
                 }
             }
 
             else if (roll < PROB_PAY + PROB_JOIN) {
                 Car newcomer;
                 lanes[lane].push_back(newcomer);
-
                 operations.push_back("Lane " + to_string(lane + 1) + " Joined: " +
-                                     newcomer.toString());
+                                     "[" + to_string(newcomer.getYear()) + " " +
+                                     newcomer.getMake() + " (" +
+                                     to_string(newcomer.getTransponder()) + ")]");
             }
 
             else {
@@ -74,10 +77,11 @@ int main() {
                     lanes[targetLane].push_back(switching);
 
                     operations.push_back(
-                        "Lane " + to_string(lane + 1) + " Switched: " +
-                        "[" + to_string(switching.year) + " " + switching.manufacturer +
-                        " (" + to_string(switching.id) + ")] to Lane " +
-                        to_string(targetLane + 1));
+                        "Lane " + to_string(lane + 1) + " Switched to Lane " +
+                        to_string(targetLane + 1) + ": [" +
+                        to_string(switching.getYear()) + " " +
+                        switching.getMake() + " (" +
+                        to_string(switching.getTransponder()) + ")]");
                 }
             }
         }
@@ -96,8 +100,5 @@ int main() {
             }
             cout << endl;
         }
-    }
-
-}
 return 0;
 }
